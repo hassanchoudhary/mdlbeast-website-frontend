@@ -1,26 +1,41 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* ─── Beast House design tokens ─────────────────────────────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Typography */
+  --font-display: var(--font-barlow-condensed);
+  --font-sans: var(--font-inter);
+
+  /* Palette */
+  --color-beast-black: #0a0a0a;
+  --color-beast-charcoal: #111111;
+  --color-beast-gold: #c8a97e;
+  --color-beast-gold-light: #e0c89a;
+  --color-beast-cream: #f5f0eb;
+  --color-beast-white: #ffffff;
+  --color-beast-teal: #3dc8c5;
+  --color-beast-pink: #ff1970;
+
+  /* Spacing (matches Figma 8pt grid) */
+  --spacing-section: 6rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  /* Offset anchor-link scrolling so fixed nav doesn't cover the target */
+  scroll-padding-top: 4rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #0a0a0a;
+  color: #f5f0eb;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
+
+/* Richtext from Strapi */
+.prose-beast {
+  color: rgba(245, 240, 235, 0.8);
+  line-height: 1.8;
+}
+.prose-beast p { margin-bottom: 1rem; }
+.prose-beast strong { color: #f5f0eb; }
