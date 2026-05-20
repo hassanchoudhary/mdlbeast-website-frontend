@@ -54,12 +54,13 @@ export default function ImageCarousel({ data }: Props) {
         transition={{ duration: 0.75, ease: 'easeOut', delay: 0.15 }}
       >
         <div className="w-full overflow-hidden" ref={emblaRef}>
-          <div className="flex gap-4 md:gap-6 pl-6 pr-6 md:pl-10 md:pr-10 lg:pl-12 lg:pr-12">
+          <div className="flex gap-3 md:gap-4 pl-6 md:pl-10 lg:pl-12">
             {cards.map((card) => (
               <div
                 key={card.id}
-                className="relative shrink-0 overflow-hidden rounded-3xl aspect-[3/4]
-                           w-[72vw] max-w-[320px] md:w-[32vw] md:max-w-[360px] lg:w-[24vw] lg:max-w-[400px]
+                className="relative shrink-0 overflow-hidden rounded-2xl
+                           w-[72vw] sm:w-[45vw] md:w-[30vw] lg:w-[24vw]
+                           aspect-[4/5]
                            group cursor-grab active:cursor-grabbing"
               >
                 {card.image ? (
@@ -67,19 +68,19 @@ export default function ImageCarousel({ data }: Props) {
                     src={card.image.url}
                     alt={card.image.alternativeText ?? card.label}
                     fill
-                    className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 72vw, (max-width: 1024px) 32vw, 24vw"
+                    className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 640px) 72vw, (max-width: 768px) 45vw, (max-width: 1024px) 30vw, 24vw"
                   />
                 ) : (
                   <div className="h-full w-full bg-beast-charcoal" />
                 )}
 
-                {/* High contrast gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 transition-opacity duration-300 group-hover:opacity-90" />
+                {/* Dark overlay */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-black/50 via-transparent to-black/60 transition-opacity duration-300 group-hover:opacity-80" />
 
                 {card.label && (
-                  <p className="absolute top-0 left-0 p-6 font-display font-extrabold uppercase leading-none text-beast-white
-                                text-xl sm:text-2xl lg:text-3xl tracking-tight">
+                  <p className="absolute top-0 left-0 p-5 font-display font-extrabold uppercase leading-none text-beast-white
+                                text-lg sm:text-xl lg:text-2xl tracking-tight drop-shadow-lg">
                     {card.label}
                   </p>
                 )}
