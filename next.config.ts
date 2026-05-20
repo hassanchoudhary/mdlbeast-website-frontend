@@ -9,8 +9,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       // Local Strapi dev
       { protocol: 'http', hostname: 'localhost', port: '1337', pathname: '/uploads/**' },
-      // Strapi Cloud
-      { protocol: 'https', hostname: '*.strapiapp.com', pathname: '/uploads/**' },
+      // Strapi Cloud (API + Media CDN)
+      { protocol: 'https', hostname: '*.strapiapp.com', pathname: '/**' },
       // Strapi on Railway
       { protocol: 'https', hostname: '*.railway.app', pathname: '/uploads/**' },
       // Strapi on Render

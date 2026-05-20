@@ -14,29 +14,41 @@ import {
 
 export const dynamic = 'force-dynamic';
 
+/**
+ * Safely fetch data — returns null on failure instead of crashing the page.
+ */
+async function safeFetch<T>(fn: () => Promise<T>): Promise<T | null> {
+  try {
+    return await fn();
+  } catch (err) {
+    console.error('[page] Fetch failed:', err instanceof Error ? err.message : err);
+    return null;
+  }
+}
+
 export default async function Home() {
   const [hero, about, restaurant, studios, events, membership, coworking, club] =
     await Promise.all([
-      fetchHero(),
-      fetchTextBlock('about'),
-      fetchFullBleedFeature('restaurant'),
-      fetchCardCarousel('card-carousel'),   // Studios — slug in Strapi is "card-carousel"
-      fetchSplitFeature(),                  // Events — Split Feature single type
-      fetchTextBlock('membership'),
-      fetchCardCarousel('Co-Working'),        // Co-Working — slug as set in Strapi
-      fetchFullBleedFeature('club'),
+      safeFetch(() => fetchHero()),
+      safeFetch(() => fetchTextBlock('about')),
+      safeFetch(() => fetchFullBleedFeature('restaurant')),
+      safeFetch(() => fetchCardCarousel('card-carousel')),
+      safeFetch(() => fetchSplitFeature()),
+      safeFetch(() => fetchTextBlock('membership')),
+      safeFetch(() => fetchCardCarousel('Co-Working')),
+      safeFetch(() => fetchFullBleedFeature('club')),
     ]);
 
   return (
     <main className="overflow-x-hidden w-full">
-      <HeroBanner data={hero} />
-      <TextBlockDark data={about} />
-      <FullBleedFeature data={restaurant} />
-      <ImageCarousel data={studios} />
-      <EventSplit data={events} />
-      <TextBlockDark data={membership} />
-      <SingleImageWithText data={coworking} />
-      <FullBleedFeature data={club} />
+      {hero && <HeroBanner data={hero} />}
+      {about && <TextBlockDark data={about} />}
+      {restaurant && <FullBleedFeature data={restaurant} />}
+      {studios && <ImageCarousel data={studios} />}
+      {events && <EventSplit data={events} />}
+      {membership && <TextBlockDark data={membership} />}
+      {coworking && <SingleImageWithText data={coworking} />}
+      {club && <FullBleedFeature data={club} />}
     </main>
   );
 }
