@@ -20,7 +20,7 @@ export default function NavClient({ logo, items }: Props) {
   // Close mobile menu on route change
   useEffect(() => { setOpen(false); }, [pathname]);
 
-  // Solid background after scrolling past the hero fold
+  // Subtle backdrop blur after scrolling
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -34,15 +34,20 @@ export default function NavClient({ logo, items }: Props) {
   }, [open]);
 
   const isActive = (url: string) => {
-    return false;
+    if (url === '/') return pathname === '/';
+    return pathname.startsWith(url);
   };
 
   return (
     <header
-      className="fixed inset-x-0 top-0 z-50 bg-beast-black border-b border-white/5 transition-all duration-300"
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-beast-black/95 backdrop-blur-md shadow-lg shadow-black/20'
+          : 'bg-beast-black'
+      }`}
     >
       <nav
-        className="flex h-20 w-full items-center justify-between px-6 md:px-10 lg:px-12"
+        className="mx-auto flex h-[60px] w-full max-w-[1920px] items-center justify-between px-6 md:px-10 lg:px-12"
         aria-label="Main navigation"
       >
         {/* ── Logo ── */}
@@ -53,26 +58,26 @@ export default function NavClient({ logo, items }: Props) {
               alt={logo.alternativeText ?? 'Beast House'}
               width={logo.width}
               height={logo.height}
-              className="h-12 w-auto object-contain"
+              className="h-9 w-auto object-contain"
               priority
             />
           ) : (
-            <span className="font-display text-2xl uppercase text-beast-white">
+            <span className="font-display text-xl font-semibold uppercase tracking-wider text-beast-white">
               Beast House
             </span>
           )}
         </Link>
 
         {/* ── Desktop nav links ── */}
-        <ul className="hidden md:flex items-center gap-6 lg:gap-8" role="list">
+        <ul className="hidden md:flex items-center gap-5 lg:gap-7" role="list">
           {items.map((item) => (
             <li key={item.id}>
               <Link
                 href={item.url}
-                className={`font-display font-bold text-base lg:text-lg uppercase tracking-wide transition-all duration-200 ${
+                className={`relative font-display font-medium text-[13px] lg:text-sm uppercase tracking-[0.14em] transition-colors duration-200 ${
                   isActive(item.url)
-                    ? 'text-beast-pink underline decoration-beast-pink decoration-2 underline-offset-[6px]'
-                    : 'text-beast-white hover:text-beast-pink hover:underline hover:decoration-beast-pink hover:decoration-2 hover:underline-offset-[6px]'
+                    ? 'text-beast-pink'
+                    : 'text-beast-white/90 hover:text-beast-pink'
                 }`}
                 aria-current={isActive(item.url) ? 'page' : undefined}
               >
@@ -112,10 +117,10 @@ export default function NavClient({ logo, items }: Props) {
               <Link
                 href={item.url}
                 onClick={() => setOpen(false)}
-                className={`block py-5 text-sm uppercase tracking-[0.2em] transition-all duration-200 ${
+                className={`block py-4 font-display font-medium text-sm uppercase tracking-[0.14em] transition-colors duration-200 ${
                   isActive(item.url)
-                    ? 'text-beast-pink underline decoration-beast-pink decoration-2 underline-offset-[6px]'
-                    : 'text-beast-cream/60 hover:text-beast-pink hover:underline hover:decoration-beast-pink hover:decoration-2 hover:underline-offset-[6px]'
+                    ? 'text-beast-pink'
+                    : 'text-beast-cream/60 hover:text-beast-pink'
                 }`}
                 aria-current={isActive(item.url) ? 'page' : undefined}
               >
