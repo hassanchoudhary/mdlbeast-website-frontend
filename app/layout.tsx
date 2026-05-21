@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Barlow_Condensed, Inter } from 'next/font/google';
 import GlobalNavBar from '@/components/GlobalNavBar';
 import GlobalFooter from '@/components/GlobalFooter';
+import AudioPlayer from '@/components/AudioPlayer';
 import './globals.css';
 
 const barlowCondensed = Barlow_Condensed({
@@ -61,6 +62,7 @@ export default function RootLayout({
       >
         <GlobalNavBar />
         {children}
+        <AudioPlayer />
         <GlobalFooter />
       </body>
     </html>

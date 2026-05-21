@@ -74,11 +74,7 @@ export default function NavClient({ logo, items }: Props) {
             <li key={item.id}>
               <Link
                 href={item.url}
-                className={`relative font-display font-medium text-[13px] lg:text-sm uppercase tracking-[0.14em] transition-colors duration-200 ${
-                  isActive(item.url)
-                    ? 'text-beast-pink'
-                    : 'text-beast-white/90 hover:text-beast-pink'
-                }`}
+                className="relative font-display font-medium text-[13px] lg:text-sm uppercase tracking-[0.14em] text-beast-white/90 hover:text-beast-pink transition-colors duration-200"
                 aria-current={isActive(item.url) ? 'page' : undefined}
               >
                 {item.label}
@@ -117,11 +113,7 @@ export default function NavClient({ logo, items }: Props) {
               <Link
                 href={item.url}
                 onClick={() => setOpen(false)}
-                className={`block py-4 font-display font-medium text-sm uppercase tracking-[0.14em] transition-colors duration-200 ${
-                  isActive(item.url)
-                    ? 'text-beast-pink'
-                    : 'text-beast-cream/60 hover:text-beast-pink'
-                }`}
+                className="block py-4 font-display font-medium text-sm uppercase tracking-[0.14em] text-beast-cream/60 hover:text-beast-pink transition-colors duration-200"
                 aria-current={isActive(item.url) ? 'page' : undefined}
               >
                 {item.label}
