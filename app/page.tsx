@@ -27,7 +27,7 @@ async function safeFetch<T>(fn: () => Promise<T>): Promise<T | null> {
 }
 
 export default async function Home() {
-  const [hero, about, restaurant, studios, events, membership, coworking, club] =
+  const [hero, about, restaurant, studios, events, membership, coworkingData, club] =
     await Promise.all([
       safeFetch(() => fetchHero()),
       safeFetch(() => fetchTextBlock('about')),
@@ -35,9 +35,15 @@ export default async function Home() {
       safeFetch(() => fetchCardCarousel('card-carousel')),
       safeFetch(() => fetchSplitFeature()),
       safeFetch(() => fetchTextBlock('membership')),
-      safeFetch(() => fetchCardCarousel('Co-Working')),
+      // Try 'Co-Working' first, fallback to lowercase 'coworking' for robust database compatibility
+      safeFetch(() => fetchCardCarousel('Co-Working')).then((res) => {
+        if (res) return res;
+        return fetchCardCarousel('coworking');
+      }).catch(() => null),
       safeFetch(() => fetchFullBleedFeature('club')),
     ]);
+
+  const coworking = coworkingData;
 
   return (
     <main className="overflow-x-hidden w-full">
