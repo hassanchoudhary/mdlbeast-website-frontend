@@ -31,14 +31,14 @@ export default function ImageCarousel({ data }: Props) {
         >
           <div className="max-w-4xl">
             {title && (
-              <h2 className="font-display font-extrabold uppercase leading-[0.9] tracking-[-0.03em] text-beast-white
-                             text-[1.75rem] sm:text-[2.25rem] md:text-[2.75rem] lg:text-[3.25rem] xl:text-[3.5rem]">
+              <h2 className="font-display font-extrabold uppercase leading-[0.9] tracking-[-0.02em] text-beast-white
+                             text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] xl:text-[4rem]">
                 {title}
               </h2>
             )}
             {body && (
               <div
-                className="prose-beast mt-6 max-w-3xl text-base leading-relaxed md:text-lg lg:text-xl text-beast-cream/95"
+                className="mt-6 max-w-3xl text-sm sm:text-base md:text-[1.05rem] leading-[1.6] text-beast-cream/85 font-normal"
                 dangerouslySetInnerHTML={{ __html: body }}
               />
             )}
@@ -54,11 +54,11 @@ export default function ImageCarousel({ data }: Props) {
         transition={{ duration: 0.75, ease: 'easeOut', delay: 0.15 }}
       >
         <div className="w-full overflow-hidden" ref={emblaRef}>
-          <div className="flex gap-3 md:gap-4 pl-6 md:pl-10 lg:pl-12">
+          <div className="flex gap-4 md:gap-6 pl-6 md:pl-10 lg:pl-12 pr-6 md:pr-10 lg:pr-12">
             {cards.map((card) => (
               <div
                 key={card.id}
-                className="relative shrink-0 overflow-hidden rounded-2xl
+                className="relative shrink-0 overflow-hidden rounded-[24px] md:rounded-[32px]
                            w-[72vw] sm:w-[45vw] md:w-[30vw] lg:w-[24vw]
                            aspect-[4/5]
                            group cursor-grab active:cursor-grabbing"
@@ -75,12 +75,12 @@ export default function ImageCarousel({ data }: Props) {
                   <div className="h-full w-full bg-beast-charcoal" />
                 )}
 
-                {/* Dark overlay */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-black/50 via-transparent to-black/60 transition-opacity duration-300 group-hover:opacity-80" />
+                {/* Dark overlay for contrast */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/70 transition-opacity duration-300 group-hover:opacity-85" />
 
                 {card.label && (
-                  <p className="absolute top-0 left-0 p-5 font-display font-extrabold uppercase leading-none text-beast-white
-                                text-lg sm:text-xl lg:text-2xl tracking-tight drop-shadow-lg">
+                  <p className="absolute top-0 left-0 p-6 md:p-8 font-display font-extrabold uppercase leading-none text-beast-white
+                                text-[1.5rem] sm:text-[1.75rem] lg:text-[2rem] tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
                     {card.label}
                   </p>
                 )}

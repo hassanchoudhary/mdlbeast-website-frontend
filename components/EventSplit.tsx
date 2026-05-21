@@ -48,15 +48,15 @@ export default function EventSplit({ data }: Props) {
           transition={{ duration: 0.85, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
         >
           {title && (
-            <h2 className="font-display font-extrabold uppercase leading-[0.8] tracking-[-0.03em] text-beast-white
-                           text-[1.75rem] sm:text-[2.25rem] md:text-[2.75rem] lg:text-[3.25rem] xl:text-[3.5rem]">
+            <h2 className="font-display font-extrabold uppercase leading-[0.9] tracking-[-0.02em] text-beast-white
+                           text-[2.25rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] xl:text-[4.5rem]">
               {title}
             </h2>
           )}
 
           {body && (
             <div
-              className="prose-beast mt-7 text-base leading-relaxed md:text-lg lg:text-xl text-beast-cream/95"
+              className="mt-6 text-sm sm:text-base md:text-[1.05rem] leading-[1.6] text-beast-cream/85 font-normal"
               dangerouslySetInnerHTML={{ __html: body }}
             />
           )}

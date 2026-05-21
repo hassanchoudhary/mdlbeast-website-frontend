@@ -39,15 +39,15 @@ export default function FullBleedFeature({ data }: Props) {
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.85, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <h2 className="font-display font-extrabold uppercase leading-[0.8] tracking-[-0.03em] text-beast-white
-                         text-[2.25rem] sm:text-[3rem] md:text-[3.5rem] lg:text-[4rem] xl:text-[4.5rem]
-                         max-w-[650px] w-full">
+          <h2 className="font-display font-extrabold uppercase leading-[0.9] tracking-[-0.02em] text-beast-white
+                         text-[2.5rem] sm:text-[3.5rem] md:text-[4.25rem] lg:text-[5rem] xl:text-[5.5rem]
+                         max-w-[700px] w-full">
             {title}
           </h2>
 
           {body && (
             <div
-              className="prose-beast mt-6 max-w-2xl text-base leading-relaxed md:text-lg lg:text-xl text-beast-cream/95"
+              className="mt-6 max-w-2xl text-sm sm:text-base md:text-[1.05rem] leading-[1.6] text-beast-cream/85 font-normal"
               dangerouslySetInnerHTML={{ __html: body }}
             />
           )}
@@ -55,7 +55,7 @@ export default function FullBleedFeature({ data }: Props) {
           {showCta && (
             <a
               href={cta_url!}
-              className="mt-10 inline-block rounded-full bg-beast-pink px-10 py-4 text-xs font-bold uppercase tracking-[0.18em] text-beast-white transition-opacity duration-200 hover:opacity-80"
+              className="mt-10 inline-block rounded-full bg-beast-pink px-10 py-4 text-xs font-bold uppercase tracking-[0.18em] text-beast-white transition-all duration-200 hover:opacity-90 hover:scale-[1.02]"
             >
               {cta_label}
             </a>

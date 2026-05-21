@@ -11,27 +11,26 @@ export default function TextBlockDark({ data }: Props) {
 
   return (
     <section
-      className="py-20 md:py-28 lg:py-32 pl-6 pr-6 md:pl-[15%] md:pr-[5%] lg:pl-[20%] lg:pr-[8%] xl:pl-[24%] xl:pr-[10%]"
+      className="py-24 md:py-32 lg:py-40 px-6 md:px-10 lg:px-12"
       style={{ backgroundColor: background_color || '#0a0a0a' }}
     >
       <FadeIn>
-        <div className="max-w-3xl">
+        <div className="mx-auto max-w-2xl text-left">
           <h2 className="font-display font-extrabold uppercase leading-[0.9] tracking-[-0.02em] text-beast-white
                          text-[1.75rem] sm:text-[2.25rem] md:text-[2.5rem] lg:text-[2.75rem] xl:text-[3rem]">
             {title}
           </h2>
 
           {body && (
-            <div
-              className="prose-beast mt-8 max-w-2xl text-base leading-relaxed md:text-lg lg:text-xl"
-              dangerouslySetInnerHTML={{ __html: body }}
-            />
+            <p className="mt-8 text-sm leading-[1.6] text-beast-cream/85 md:text-base lg:text-lg">
+              {body}
+            </p>
           )}
 
           {showCta && (
             <a
               href={cta_url!}
-              className="mt-10 inline-block rounded-full bg-beast-teal px-10 py-4 text-xs font-bold uppercase tracking-[0.18em] text-beast-white transition-opacity duration-200 hover:opacity-80"
+              className="mt-10 inline-block rounded-full bg-beast-teal px-10 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-beast-white transition-all duration-200 hover:opacity-85 hover:scale-[1.02]"
             >
               {cta_label}
             </a>

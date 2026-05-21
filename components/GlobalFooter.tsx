@@ -47,7 +47,7 @@ export default async function GlobalFooter() {
 
         {/* Column 1 — Opening Hours */}
         <div>
-          <h3 className="mb-6 font-display font-black tracking-wider uppercase text-sm text-beast-white">
+          <h3 className="mb-6 font-display font-extrabold tracking-[0.08em] uppercase text-[0.8rem] sm:text-[0.875rem] text-beast-white">
             Opening Hours
           </h3>
           {opening_hours?.length > 0 ? (
@@ -69,7 +69,7 @@ export default async function GlobalFooter() {
 
         {/* Column 2 — Contact */}
         <div>
-          <h3 className="mb-6 font-display font-black tracking-wider uppercase text-sm text-beast-white">
+          <h3 className="mb-6 font-display font-extrabold tracking-[0.08em] uppercase text-[0.8rem] sm:text-[0.875rem] text-beast-white">
             Contact
           </h3>
           {contact ? (
@@ -107,7 +107,7 @@ export default async function GlobalFooter() {
 
         {/* Column 3 — Follow Us */}
         <div>
-          <h3 className="mb-6 font-display font-black tracking-wider uppercase text-sm text-beast-white">
+          <h3 className="mb-6 font-display font-extrabold tracking-[0.08em] uppercase text-[0.8rem] sm:text-[0.875rem] text-beast-white">
             Follow Us
           </h3>
           {social_links?.length > 0 ? (
