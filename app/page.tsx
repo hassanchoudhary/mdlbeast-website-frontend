@@ -11,6 +11,7 @@ import {
   fetchSplitFeature,
   fetchCardCarousel,
 } from '@/lib/strapi';
+import type { CardCarouselData } from '@/types/strapi';
 
 export const dynamic = 'force-dynamic';
 
@@ -26,6 +27,23 @@ async function safeFetch<T>(fn: () => Promise<T>): Promise<T | null> {
   }
 }
 
+/**
+ * Robustly fetch Co-Working card carousel using potential slug variations
+ * (e.g. 'Co-Working' on local, 'co-working-1' on production, 'coworking' from guidelines)
+ */
+async function fetchCoworkingData(): Promise<CardCarouselData | null> {
+  const slugs = ['Co-Working', 'co-working-1', 'coworking', 'Co-working'];
+  for (const slug of slugs) {
+    try {
+      const data = await fetchCardCarousel(slug);
+      if (data) return data;
+    } catch {
+      // Ignore and try the next fallback slug
+    }
+  }
+  return null;
+}
+
 export default async function Home() {
   const [hero, about, restaurant, studios, events, membership, coworkingData, club] =
     await Promise.all([
@@ -35,11 +53,7 @@ export default async function Home() {
       safeFetch(() => fetchCardCarousel('card-carousel')),
       safeFetch(() => fetchSplitFeature()),
       safeFetch(() => fetchTextBlock('membership')),
-      // Try 'Co-Working' first, fallback to lowercase 'coworking' for robust database compatibility
-      safeFetch(() => fetchCardCarousel('Co-Working')).then((res) => {
-        if (res) return res;
-        return fetchCardCarousel('coworking');
-      }).catch(() => null),
+      safeFetch(() => fetchCoworkingData()),
       safeFetch(() => fetchFullBleedFeature('club')),
     ]);
 
